@@ -1,18 +1,16 @@
 package com.example.EmployeeManagementSystem.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Getter
-@Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeDTO {
-    private Long id;
-    private String firstname;
-    private String lastname;
-    private String email;
+@NoArgsConstructor
+@Setter
+public class EmployeeResponseDTO {
+    private String code;
+    private String message;
 }

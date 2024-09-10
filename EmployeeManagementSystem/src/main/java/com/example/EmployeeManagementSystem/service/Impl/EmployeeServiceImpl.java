@@ -33,13 +33,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<EmployeeDTO> getAllEmployee() {
         List<Employee> employees=employeeRepository.findAll();
-        return employees.stream().map(EmployeeMapper::JPAmaptoEmployeeDTO).collect(Collectors.toList());
+        return employees.stream()
+                .map(EmployeeMapper::JPAmaptoEmployeeDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
     public EmployeeDTO updateEmployeeDetails(Long employeeid, EmployeeDTO updatedEmployeeDTO) {
         Employee employee=employeeRepository.findById(employeeid)
-                .orElseThrow(()->new ResourceNotFoundException("Employee not exist given id"+employeeid));
+                .orElseThrow(()->new ResourceNotFoundException("Employee not exist by given id "+employeeid));
         employee.setFirstname(updatedEmployeeDTO.getFirstname());
         employee.setLastname(updatedEmployeeDTO.getLastname());
         employee.setEmail(updatedEmployeeDTO.getEmail());
@@ -50,7 +52,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteEmployee(Long employeeid) {
         Employee employee=employeeRepository.findById(employeeid)
-                .orElseThrow(()->new ResourceNotFoundException("Employee not exist given id"));
+                .orElseThrow(()->new ResourceNotFoundException("Employee not exist by given id "+employeeid));
         employeeRepository.deleteById(employeeid);
     }
 }
